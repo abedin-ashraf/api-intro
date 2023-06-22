@@ -46,7 +46,7 @@ function displayPost(posts) {
 
     }
 }
-
+//Function for Comments
 function loadComments() {
     fetch('https://jsonplaceholder.typicode.com/comments')
         .then(res => res.json())
@@ -70,5 +70,32 @@ function displayComments(data) {
         div.appendChild(name);
         div.appendChild(email);
         div.appendChild(comment);
+    }
+}
+
+//Function for Load Todo List and Display it
+
+//function for loading todo from the server
+function loadTodo() {
+    fetch('https://jsonplaceholder.typicode.com/todos')
+        .then(response => response.json())
+        .then(todos => displayTodo(todos))
+}
+//function for displaying the data to the website
+function displayTodo(todos) {
+    const todoSection = document.getElementById('todo-section');
+
+    for (const todo of todos) {
+        //Creating Tag for the content
+        const title = document.createElement('h2');
+        const completed = document.createElement('h4');
+
+        //Adding Text to tag
+        title.innerText = todo.title;
+        completed.innerText = todo.completed;
+
+        //Adding to the Website
+        todoSection.appendChild(title);
+        todoSection.appendChild(completed);
     }
 }
